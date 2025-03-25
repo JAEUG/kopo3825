@@ -1,0 +1,44 @@
+orange_juice = 100
+coffee = 200
+coke = 300
+change = 0;
+
+while True:
+  print('*********************음료목록*********************')
+  print('*************************************************') 
+  print('1.오렌지주스(100원), 2.커피(200원), 3.콜라(300원)')
+  print('*************************************************')
+  money = int(input('이용하시려면 돈을 넣어주세요'))
+  menu = int(input('원하시는 메뉴를 선택해주세요'))
+
+  if menu == 1:
+    if money < orange_juice:
+      print('잔액이 부족합니다')
+    elif money > orange_juice:
+      print('주문하신 오렌지주스입니다.')
+      print('잔돈은 ' + str(money - orange_juice) + '원입니다')
+    else:
+      print('주문하신 오렌지주스입니다.')
+      print('잔돈은 없습니다~')
+  elif menu == 2:
+    if money < coffee:
+      print('잔액이 부족합니다')
+    elif money > coffee:
+      print('주문하신 커피입니다.')
+      print('잔돈은 ' + str(money - coffee) + '원입니다')
+    else:
+      print('주문하신 커피입니다.')
+      print('잔돈은 없습니다~')
+  elif menu == 3:
+    if money < coke:
+      print('잔액이 부족합니다')
+    elif money > coke:
+      print('주문하신 콜라입니다.')
+      print('잔돈은 ' + str(money - coke) + '원입니다')
+    else:
+      print('주문하신 콜라입니다.')
+      print('잔돈은 없습니다~')
+  else:
+    print("없는 메뉴입니다. 다시 입력해 주세요.")
+
+  money = 0;
