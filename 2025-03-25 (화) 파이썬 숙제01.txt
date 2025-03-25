@@ -8,7 +8,7 @@ while i <= 9:
     if i == 3:
       print("**홀수**")
     while j <= 9:
-      print("{0} X {1} = {2}".format(i, j, i*j))
+      print("{0} X {1} = {2}".format(i, j, i * j))
       j += 2
 
   i += 1
@@ -25,7 +25,7 @@ while i <= 9:
       print("**짝수**")
     while j <= 9:
       if j % 2 == 0:
-        print("{0} X {1} = {2}".format(i, j, i*j))
+        print("{0} X {1} = {2}".format(i, j, i * j))
       j += 1
 
   i += 1
