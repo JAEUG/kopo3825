@@ -10,8 +10,6 @@ else:
     for k in range(0, blank_count): # starting blank: 2
       print(" ", end="")
     for j in range(starting_num, n+1):
-      #print("확인용 inner_count: " + str(inner_count) + str(n+1))
-      #print("확인용 num: " + str(num))
       if num > n: # print only upto the number user gave
         break
       print(num, end="") # print numbers here
