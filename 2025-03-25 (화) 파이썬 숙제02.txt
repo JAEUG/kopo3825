@@ -8,7 +8,7 @@ while True:
   print('*************************************************')
   print('1.오렌지주스(100원), 2.커피(200원), 3.콜라(300원)')
   print('*************************************************')
-  money = int(input('이용하시려면 돈을 넣어주세요'))
+  money = float(input('이용하시려면 돈을 넣어주세요'))
   if money < 0: # in case some crazy people type in negative numbers
     print("누가 돈을 -로 넣습니까 다시 하세요")
     continue
@@ -22,7 +22,7 @@ while True:
       print('잔액이 부족합니다')
     elif money > orange_juice:
       print('주문하신 오렌지주스입니다.')
-      print('잔돈은 ' + str(money - orange_juice) + '원입니다')
+      print('잔돈은 ' + str(int(money - orange_juice)) + '원입니다')
     else:
       print('주문하신 오렌지주스입니다.')
       print('잔돈은 없습니다~')
@@ -31,7 +31,7 @@ while True:
       print('잔액이 부족합니다')
     elif money > coffee:
       print('주문하신 커피입니다.')
-      print('잔돈은 ' + str(money - coffee) + '원입니다')
+      print('잔돈은 ' + str(int(money - coffee)) + '원입니다')
     else:
       print('주문하신 커피입니다.')
       print('잔돈은 없습니다~')
@@ -40,7 +40,7 @@ while True:
       print('잔액이 부족합니다')
     elif money > coke:
       print('주문하신 콜라입니다.')
-      print('잔돈은 ' + str(money - coke) + '원입니다')
+      print('잔돈은 ' + str(int(money - coke)) + '원입니다')
     else:
       print('주문하신 콜라입니다.')
       print('잔돈은 없습니다~')
