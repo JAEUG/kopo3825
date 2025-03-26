@@ -12,6 +12,9 @@ while True:
   if money < 0: # in case some crazy people type in negative numbers
     print("누가 돈을 -로 넣습니까 다시 하세요")
     continue
+  if money == 0: # if user input is 0
+    print("돈을 안 넣으셨는데요? 돈을 넣어주세요!!")
+    continue
   menu = int(input('원하시는 메뉴를 선택해주세요'))
 
   if menu == 1: # orange_juice
