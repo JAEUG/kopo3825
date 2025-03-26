@@ -1,11 +1,12 @@
 # 좌측 직각 삼각형 n줄
 
-n = int(input())
+user_input = float(input())
+n = int(user_input) # prevent type mismatch error when using for
 
-if n >= 1:
+if user_input >= 1 and user_input % 1 == 0: # no decimal allowed
   for i in range(1, n + 1, +1): # i: 1~n
     for j in range(1, i + 1, +1): # j: 1~i
       print("*", end="") # prevent automaitc line change by adding end=""
     print()
 else:
-  print("1보다 작은 수는 입력하실수 없습니다")
+  print("1보다 작은 수나 실수(소수점이 포함된 수)는 입력하실수 없습니다")
