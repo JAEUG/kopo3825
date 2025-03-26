@@ -1,0 +1,23 @@
+user_input = float(input("숫자를 입력하시오")) # come on! decimal users
+n = int(user_input) # so i can use n in range
+starting_num = n # print single number in first line
+blank_count = 2 # make triangle shape
+num = 1 # actual value to be printed 1~n
+if user_input % 1 != 0 or user_input < 1 or user_input > 9: # no 0, negative numbers, real numbers
+  print("잘못된 숫자입니다")
+else:
+  for i in range(1, 4): # make 3 lines
+    for k in range(0, blank_count): # starting blank: 2
+      print(" ", end="")
+    for j in range(starting_num, n+1):
+      #print("확인용 inner_count: " + str(inner_count) + str(n+1))
+      #print("확인용 num: " + str(num))
+      if num > n: # print only upto the number user gave
+        break
+      print(num, end="") # print numbers here
+      num += 1 # after each number print, increase num by 1
+    starting_num -= 2 # increase the amount of numbers to be printed by 2 every line
+    blank_count -= 1 # decrease the number of blanks by 1 every line
+    if starting_num < 0: # just in case
+        break
+    print() # switch line!
