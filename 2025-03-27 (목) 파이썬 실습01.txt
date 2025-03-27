@@ -1,0 +1,58 @@
+# Vending Machine Program
+menu = ('orange_juice', 'coffee', 'coke')
+price = (100, 200, 300)
+change = 0;
+
+while True:
+  print('*********************음료목록*********************')
+  print('*************************************************')
+  print('1.오렌지주스(100원)   2.커피(200원)   3.콜라(300원)')
+  print('*************************************************')
+  money = float(input('이용하시려면 돈을 넣어주세요'))
+  if money < 0: # in case some crazy people type in negative numbers
+    print("누가 돈을 -로 넣습니까 다시 하세요")
+    continue
+  if money == 0: # if user input is 0
+    print("돈을 안 넣으셨는데요? 돈을 넣어주세요!!")
+    continue
+  user_choice = int(input('원하시는 메뉴를 선택해주세요'))
+  # int choice -> String menu
+  if user_choice == 1:
+    user_choice = menu[0]
+  elif user_choice == 2:
+    user_choice = menu[1]
+  elif user_choice == 3:
+    user_choice = menu[2]
+
+
+  if user_choice == menu[0]: # orange_juice
+    if money < price[0]:
+      print('잔액이 부족합니다')
+    elif money > price[0]:
+      print('주문하신 오렌지주스입니다.')
+      print('잔돈은 ' + str(int(money - price[0])) + '원입니다')
+    else:
+      print('주문하신 오렌지주스입니다.')
+      print('잔돈은 없습니다~')
+  elif user_choice == menu[1]: # coffee
+    if money < price[1]:
+      print('잔액이 부족합니다')
+    elif money > price[1]:
+      print('주문하신 커피입니다.')
+      print('잔돈은 ' + str(int(money - price[1])) + '원입니다')
+    else:
+      print('주문하신 커피입니다.')
+      print('잔돈은 없습니다~')
+  elif user_choice == menu[2]: # coke
+    if money < price[2]:
+      print('잔액이 부족합니다')
+    elif money > price[2]:
+      print('주문하신 콜라입니다.')
+      print('잔돈은 ' + str(int(money - price[2])) + '원입니다')
+    else:
+      print('주문하신 콜라입니다.')
+      print('잔돈은 없습니다~')
+  else:
+    print("없는 메뉴입니다. 다시 입력해 주세요.")
+
+  money = 0; # money reset
