@@ -1,0 +1,24 @@
+# haeng: m
+# yeol: n
+
+row = float(input('행(row): '))
+column = float(input('열(column): '))
+m = int(row) # haeng
+n = int(column) # yeol
+m_num = 1 # haeng starting number
+n_num = m_num + 1 # row starting number
+
+if row % 1 != 0 or column % 1 != 0 or row <= 0 or column <= 0: # no decimal or negative numbers or 0
+  print("옳지 못한 입력입니다.")
+else:
+  for i in range(1, m + 1): # haeng = row = line
+
+    for i in range(m, m+1): # only 1 haeng number for each line
+      print(m_num, end="")
+      m_num += 1
+
+    for j in range(n-1): # yeol - 1 becuase at the start of the line 1 haeng number already exists
+      print(n_num, end="")
+      n_num += 1
+    n_num = m_num + 1 # for every line, starting number for n_number should be m_number + 1 
+    print() # new line
