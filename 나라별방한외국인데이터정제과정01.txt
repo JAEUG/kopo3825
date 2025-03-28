@@ -1,0 +1,33 @@
+from google.colab import files
+
+#f = files.upload()
+
+f = open('20250328132948_방한 외래관광객 성별.csv', 'r', encoding='UTF-8') # 인코딩 UTF-8이 아니면 오류가 발생했음
+
+import csv
+ppl_visited_kor = csv.reader(f) # 방한 외래관광객 파일 열기
+
+ppl_visited_kor_list = [] # 파일 내용 읽어서 줄 단위로 저장할 리스트
+for row in ppl_visited_kor:
+  ppl_visited_kor_list.append(row) # 리스트에 내용 삽입
+
+ppl_visited_kor_per_country = [] # 여려가지 형태의 방문자 수 중에서 '전체'(총계) 방문자 수가 담긴 행만 추려내서 저장할 리스트
+#print(ppl_visited_kor_list[0][2])
+
+for i in range(len(ppl_visited_kor_list)):
+  if ppl_visited_kor_list[i][3] == '전체': # 4번째열의 값이 '전체'인 행
+    ppl_visited_kor_per_country.append(ppl_visited_kor_list[i]) # 추려낸 데이터 삽입
+
+
+#for row in ppl_visited_kor_per_country:
+#  print(row)
+
+f = open('연도별(월단위)나라별방한외국인숫자.csv', 'w', encoding='cp949', newline='') # 파일 쓰기 위해 쓰기 옵션으로 오픈
+
+fwriter = csv.writer(f) # 파일에 쓰기 준비
+
+for row in ppl_visited_kor_per_country: # 추려낸 내용 전체 파일에 써넣기
+  fwriter.writerow(row)
+
+
+f.close() # 파일 닫기
