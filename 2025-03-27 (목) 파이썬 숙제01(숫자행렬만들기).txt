@@ -6,7 +6,7 @@ column = float(input('열(column): '))
 m = int(row) # haeng
 n = int(column) # yeol
 m_num = 1 # haeng starting number
-n_num = m_num + 1 # row starting number
+n_num = m_num + 1 # yeol starting number
 
 if row % 1 != 0 or column % 1 != 0 or row <= 0 or column <= 0: # no decimal or negative numbers or 0
   print("옳지 못한 입력입니다.")
