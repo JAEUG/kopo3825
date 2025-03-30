@@ -1,0 +1,48 @@
+from google.colab import files # 구글 코랩에서 파일 이용하기 위해 files 라이브러리 임포트
+
+#f = files.upload() # 구글 코랩에서는 로컬 파일을 읽어들일 수 없는것 같다 업로드가 선행된다
+
+f = open('유튜브 명곡 모음집 PlayList by 재욱.txt', 'r', encoding='UTF-8') # 파일 열기
+
+music_list = [] # 파일 내용을 line by line으로 담을 리스트
+
+# 파일을 한 줄씩 저장하는데 읽는 도중 빈칸(줄바꿈)이 있으면 생략
+for line in f:
+  if line != '\n':
+    music_list.append(line)
+  else:
+    continue
+
+print(len(music_list)) # 총 몇줄?
+print(type(music_list[0])) # 구성한 리스트 요소 타입 알아보기
+
+i = 0
+for line in music_list:
+  music_list[i] = music_list[i].replace('\n', '') # 내용 뒤에 줄바꿈(\n)이 있으면 삭제해줌
+  i += 1
+  if i >= len(music_list):
+    break
+print()
+print(music_list) # 어떻게 생겨먹었는지 모양 보기
+
+# 인쇄해서 모양을 보니깐 중간에 ,가 들어있고 그 바로 뒤에 ' '(공백)이 하나씩 포함되어 있네, 내용을 조금 조작해보자
+i = 0
+for line in music_list:
+  music_list[i] = music_list[i].split(',') # , 제거(이 과정에서 String->List 변환 일어남, 파이썬은 이게 자동으로 되네;)
+  music_list[i][1] = music_list[i][1].strip() # 이제 2차원 리스트 조작, 위에서 ,를 기준으로 잘랐으니 
+  i += 1                                      # 1번 인덱스 요소에 ' '(공백)이 포함된채로 저장되어있음 공백을 제거해주자
+  if i >= len(music_list):
+    break
+print()
+print(music_list)
+
+import csv # csv로 저장하기 위해 csv 라이브러리 임포트
+
+f = open('music_list_csv_test.csv', 'w', newline='') # 내용을 저장할 파일 지정
+
+f_writer = csv.writer(f) # 파일에 쓰기 준비
+
+for line in music_list: # 리스트 요소 한개당 한줄씩 입력하렴
+  f_writer.writerow(line)
+
+f.close() # 마지막으로 파일 다 썼으면 닫아주기!
