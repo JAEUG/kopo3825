@@ -6,19 +6,19 @@ import openpyxl # 엑셀 파일 시스템 이용 위한 라이브러리
 wb = openpyxl.Workbook() # 빈 엑셀 파일 생성
 ws = wb.active
 
-with open('data1.csv', encoding='cp949') as f: # csv파일 열기
+with open('data1.csv', encoding = 'cp949') as f: # csv파일 열기
   reader = csv.reader(f) # 읽기 준비
   for row in reader:
     ws.append(row) # csv파일 내용을 한줄씩 엑셀 파일에 추가하기
 ws2 = wb.create_sheet('Sheet2') # 엑셀 파일내에 새로운 시트 추가
 # 1번 과정 반복
-with open('data2.csv', encoding='cp949') as f:
+with open('data2.csv', encoding = 'cp949') as f:
   reader = csv.reader(f)
   for row in reader:
     ws2.append(row)
 ws3 = wb.create_sheet('Sheet3')
 # 과정 반복
-with open('data3.csv', encoding='cp949') as f:
+with open('data3.csv', encoding = 'cp949') as f:
   reader = csv.reader(f)
   for row in reader:
     ws3.append(row)
