@@ -1,0 +1,17 @@
+# 숙제2
+# 예금이자 계산기
+# 원리금 = 거치금액 * (1 + 연간이율)^거치년수
+import math
+
+def interest_year(p, r, n): # p: 원금, r: 연간 이율, n: 거치 년수
+  calc_result = int(p * math.pow((1 + r), n))
+
+  return calc_result
+
+p = 30000000
+r = 0.051
+n = 3
+
+result = interest_year(p, r, n)
+print('{0}원을 이자율이 {1}일때 {2}년간 예치하면 {3}원이 됩니다.'.format(p, r, n, result))
+print('원금: {0}원, 이자: {1}원'.format(p, result - p))
