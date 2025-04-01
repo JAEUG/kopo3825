@@ -1,0 +1,21 @@
+# 1은 소수의 조건을 만족하지만 소수가 아니고, 2는 소수의 조건을 만족하지 않지만 소수이다
+# 이 둘은 그냥 default로 예외처리해버리자
+def check_prime_num(x): # 소수 판별법: 1과 자기자신으로 나누었을때만 나머지가 0이 되는 값(즉 2~자기자신-1까지의 수로 쭉 나누었을때 나머지가0이 나온다면 소수가 아닌것)
+  result = []
+  result_string = ''
+  for i in range(2, x): # 2부터 x-1까지
+    result.append(x % 2) # x를 나눈 나머지를 저장
+
+  if 0 in result and x != 2 or x == 1: # 저장한 데이터에 0이 포함되어있다면 소수가 아님 2랑 1은 변종들..
+    result_string = '소수가 아닙니다'
+  else:
+    result_string = '소수가 맞습니다'
+  print(x,'는', result_string)
+
+x = float(input('정수를 입력하시오: '))
+if (int(x) <= 0) or (x % 1 != 0): # 음수, 0 혹은 실수 입력 방지
+  print('입력하신 값은 유효하지 않은 값입니다')
+elif int(x) > 99999:
+  print('프로그램 죽어요!!')
+else:
+  check_prime_num(int(x))
