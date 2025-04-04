@@ -5,7 +5,7 @@ int main() {
     printf("정수 3개를 입력하세요: ");
     double a, b, c;
     scanf("%lf %lf %lf", &a, &b, &c);
-    if ((int)a == 0 || (int)b == 0 || (int)c == 0) {
+    if ((int)c == 0) {
         printf("0은 입력하실 수 없습니다 sorry");
         return 0;
     }
