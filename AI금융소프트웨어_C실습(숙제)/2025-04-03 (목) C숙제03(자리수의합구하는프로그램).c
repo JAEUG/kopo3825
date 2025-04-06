@@ -1,14 +1,15 @@
 #include <stdio.h>
-
+#include <stdlib.h> // absí•¨ìˆ˜ ì´ìš©í•˜ê¸° ìœ„í•´ include
+// absí•¨ìˆ˜: ì •ìˆ˜ ì…ë ¥ì„ ì ˆëŒ€ê°’ ì²˜ë¦¬í•˜ì—¬ return
 void main() {
 	
 	int num;
-	scanf_s("%d", &num);
+	scanf("%d", &num);
 
-	int num100 = num / 100;			// ¹éÀÇÀÚ¸® °ª
-	int num10 = (num / 10) % 10;	// ½ÊÀÇÀÚ¸® °ª
-	int num1 = num % 10;			// ÀÏÀÇÀÚ¸® °ª
+	int num100 = abs(num) / 100;		// ë°±ì˜ìë¦¬ ê°’
+	int num10 = abs((num / 10)) % 10;	// ì‹­ì˜ìë¦¬ ê°’
+	int num1 = abs(num) % 10;			// ì¼ì˜ìë¦¬ ê°’
 
-	printf("ÀÚ¸®¼öÀÇ ÇÕ: %d", num100 + num10 + num1);
+	printf("ìë¦¬ìˆ˜ì˜ í•©: %d", num100 + num10 + num1);
 
 }
