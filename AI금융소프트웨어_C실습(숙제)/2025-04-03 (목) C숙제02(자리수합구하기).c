@@ -2,7 +2,6 @@
 #include <stdlib.h> // abs함수 이용하기 위해 include
 // abs함수: 정수 입력을 절대값 처리하여 return
 void main() {
-	
 	int num;
 	scanf("%d", &num);
     	if (num <= 999 && num >= -999) {
@@ -13,5 +12,4 @@ void main() {
 	} else {
 	        printf("정수(최대3자리)를 입력하세요");
 	}// if
-    
 }// main
