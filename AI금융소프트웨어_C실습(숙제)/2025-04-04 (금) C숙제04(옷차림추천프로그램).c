@@ -3,8 +3,8 @@
 void main() {
 	double temp;
 	int outfitRecomm = 0;
-	printf("ÇöÀç ¿Âµµ°¡ ¸î µµÀÎ°¡¿ä? ");
-	scanf_s("%lf", &temp);
+	printf("í˜„ìž¬ ì˜¨ë„ê°€ ëª‡ ë„ì¸ê°€ìš”? ");
+	scanf("%lf", &temp);
 
 	if (temp >= 30) {
 		outfitRecomm = 1;
@@ -22,22 +22,22 @@ void main() {
 
 	switch (outfitRecomm) {
 		case 1:
-			printf("³Ê¹« ´õ¿ö¿ä! ¹ÝÆÈ°ú ¹Ý¹ÙÁö¸¦ ÀÔÀ¸¼¼¿ä.");
+			printf("ë„ˆë¬´ ë”ì›Œìš”! ë°˜íŒ”ê³¼ ë°˜ë°”ì§€ë¥¼ ìž…ìœ¼ì„¸ìš”.");
 			break;
 		case 2:
-			printf("µû¶æÇÑ ³¯¾¾ÀÔ´Ï´Ù! °¡º­¿î ¿ÊÀ» ÀÔÀ¸¼¼¿ä.");
+			printf("ë”°ëœ»í•œ ë‚ ì”¨ìž…ë‹ˆë‹¤! ê°€ë²¼ìš´ ì˜·ì„ ìž…ìœ¼ì„¸ìš”.");
 			break;
 		case 3:
-			printf("¼±¼±ÇÑ ³¯¾¾ÀÔ´Ï´Ù! °¡º­¿î °Ñ¿ÊÀ» Ã¬±â¼¼¿ä.");
+			printf("ì„ ì„ í•œ ë‚ ì”¨ìž…ë‹ˆë‹¤! ê°€ë²¼ìš´ ê²‰ì˜·ì„ ì±™ê¸°ì„¸ìš”.");
 			break;
 		case 4:
-			printf("Á¶±Ý ½Ò½ÒÇÕ´Ï´Ù! µû¶æÇÑ ¿ÊÀ» ÀÔÀ¸¼¼¿ä.");
+			printf("ì¡°ê¸ˆ ìŒ€ìŒ€í•©ë‹ˆë‹¤! ë”°ëœ»í•œ ì˜·ì„ ìž…ìœ¼ì„¸ìš”.");
 			break;
 		case 5:
-			printf("¸Å¿ì Ãä½À´Ï´Ù! µÎ²¨¿î ¿ÜÅõ¸¦ ²À ÀÔÀ¸¼¼¿ä.");
+			printf("ë§¤ìš° ì¶¥ìŠµë‹ˆë‹¤! ë‘êº¼ìš´ ì™¸íˆ¬ë¥¼ ê¼­ ìž…ìœ¼ì„¸ìš”.");
 			break;
 		case 6:
-			printf("ÇÑÆÄ °æ°í! ÆÐµù°ú Àå°©, ¸ðÀÚ¸¦ Âø¿ëÇÏ¼¼¿ä.");
+			printf("í•œíŒŒ ê²½ê³ ! íŒ¨ë”©ê³¼ ìž¥ê°‘, ëª¨ìžë¥¼ ì°©ìš©í•˜ì„¸ìš”.");
 			break;
 		default:
 			printf("INTERNAL SYSTEM ERROR OCCURED");
