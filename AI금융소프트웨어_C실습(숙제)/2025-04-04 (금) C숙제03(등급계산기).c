@@ -3,8 +3,8 @@
 void main() {
 	double score;
 	char grade;
-	printf("´ç½ÅÀÇ ½ÃÇè Á¡¼ö, ±×°ÍÀÌ ¾Ë°í½Í´Ù: "); 
-	scanf_s("%lf", &score);
+	printf("ë‹¹ì‹ ì˜ ì‹œí—˜ ì ìˆ˜, ê·¸ê²ƒì´ ì•Œê³ ì‹¶ë‹¤: "); 
+	scanf("%lf", &score);
 	if (score <= 100 && score >= 0) {
 		if (score >= 90 && score <= 100) {
 			grade = 'A';
@@ -30,10 +30,10 @@ void main() {
 				break;
 		}// switch
 
-		printf("º¸³Ê½º(ÇØ´çµÈ´Ù¸é)°¡ ¹İ¿µµÈ ½ÃÇèÁ¡¼ö: %lf", score);
+		printf("ë³´ë„ˆìŠ¤(í•´ë‹¹ëœë‹¤ë©´)ê°€ ë°˜ì˜ëœ ì‹œí—˜ì ìˆ˜: %lf", score);
 	} else {
 		grade = 0;
-		printf("¾ê! ¼¼»ó¿¡ ±×·± ½ÃÇè Á¡¼ö°¡ ¾îµğÀÖ´Ï?");
+		printf("ì–˜! ì„¸ìƒì— ê·¸ëŸ° ì‹œí—˜ ì ìˆ˜ê°€ ì–´ë””ìˆë‹ˆ?");
 
 	}// if
 
