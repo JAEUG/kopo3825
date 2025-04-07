@@ -18,17 +18,17 @@ void main() {
 			grade = 'F';
 		}
 
-		switch (grade) {
-			case 'A':
-				score = score * 1.1;
-				break;
-			case 'B':
-				score = score * 1.05;
-				break;
-			default:
-				score = score;
-				break;
-		}// switch
+	switch (grade) {
+		case 'A':
+			score = score * 1.1;
+			break;
+		case 'B':
+			score = score * 1.05;
+			break;
+		default:
+			score = score;
+			break;
+	}// switch
 
 		printf("보너스(해당된다면)가 반영된 시험점수: %lf", score);
 	} else {
