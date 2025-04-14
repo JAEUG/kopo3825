@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
 // quick sort: divide and conquer
-void swap(int* first, int* second) { // first¿Í secondÀÇ °ªÀ» ±³È¯
+void swap(int* first, int* second) { // firstì™€ secondì˜ ê°’ì„ êµí™˜
 	int temp;
 	temp = *second;
 	*second = *first;
@@ -9,83 +9,83 @@ void swap(int* first, int* second) { // first¿Í secondÀÇ °ªÀ» ±³È¯
 }// swap
 
 void quick(int arr[], int start, int end) {
-	if (start >= end) return;// ¹è¿­ÀÇ Å©±â°¡(ºÐÇÒµÇ¾î Àç±ÍÈ£Ãâ µÇ¾úÀ»¶§¸¦ »ý°¢) 0ÀÌ µÇ¾úÀ»¶§´Â ÇÔ¼ö¸¦ Á¾·á
-	int *pArr = &arr[0];	 // ¹è¿­ arr¸¦ Á¶ÀÛÇÏ±â À§ÇÑ Æ÷ÀÎÅÍ ¹è¿­
-	int left = start + 1;	 // ¿ÞÂÊ Æ÷ÀÎÅÍ
-	int right = end;		 // ¿À¸¥ÂÊ Æ÷ÀÎÅÍ		
-	int pivot = start;		 // pivotÀ§Ä¡
+	if (start >= end) return;// ë°°ì—´ì˜ í¬ê¸°ê°€(ë¶„í• ë˜ì–´ ìž¬ê·€í˜¸ì¶œ ë˜ì—ˆì„ë•Œë¥¼ ìƒê°) 0ì´ ë˜ì—ˆì„ë•ŒëŠ” í•¨ìˆ˜ë¥¼ ì¢…ë£Œ
+	int *pArr = &arr[0];	 // ë°°ì—´ arrë¥¼ ì¡°ìž‘í•˜ê¸° ìœ„í•œ í¬ì¸í„°
+	int left = start + 1;	 // ì™¼ìª½ í¬ì¸í„°
+	int right = end;		 // ì˜¤ë¥¸ìª½ í¬ì¸í„°		
+	int pivot = start;		 // pivotìœ„ì¹˜
 	
-	while (left <= right) { // ¿ÞÂÊ Æ÷ÀÎÅÍ(ÁøÇà¹æÇâ:--->)°¡ ¿À¸¥ÂÊ Æ÷ÀÎÅÍ(ÁøÇà¹æÇâ:<---)¿Í ¸¸³¯¶§±îÁö¸¸ ½ÇÇà
-		while (left <= end && pArr[left] <= pArr[pivot]) { // ¿ÞÂÊ Æ÷ÀÎÅÍ ½ÃÀÛÁöÁ¡(start + 1)ºÎÅÍ ¹è¿­ÀÇ ³¡±îÁö, ¿ÞÂÊÆ÷ÀÎÅÍ°¡ °¡¸®Å°´Â °ªÀÌ pivot°ªº¸´Ù ÀÛ°Å³ª °°À» µ¿¾È¸¸
-			left++; // ¿ÞÂÊ Æ÷ÀÎÅÍ¸¦ -> ·Î 1Ä­¾¿ ÀÌµ¿
+	while (left <= right) { // ì™¼ìª½ í¬ì¸í„°(ì§„í–‰ë°©í–¥:--->)ê°€ ì˜¤ë¥¸ìª½ í¬ì¸í„°(ì§„í–‰ë°©í–¥:<---)ì™€ ë§Œë‚ ë•Œê¹Œì§€ë§Œ ì‹¤í–‰
+		while (left <= end && pArr[left] <= pArr[pivot]) { // ì™¼ìª½ í¬ì¸í„° ì‹œìž‘ì§€ì (start + 1)ë¶€í„° ë°°ì—´ì˜ ëê¹Œì§€, ì™¼ìª½í¬ì¸í„°ê°€ ê°€ë¦¬í‚¤ëŠ” ê°’ì´ pivotê°’ë³´ë‹¤ ìž‘ê±°ë‚˜ ê°™ì„ ë™ì•ˆë§Œ
+			left++; // ì™¼ìª½ í¬ì¸í„°ë¥¼ -> ë¡œ 1ì¹¸ì”© ì´ë™
 		}
-		while (right > start && pArr[right] >= pArr[pivot]) { // ¿À¸¥ÂÊ Æ÷ÀÎÅÍ ½ÃÀÛÁöÁ¡(end) ºÎÅÍ start + 1±îÁö, ¿À¸¥ÂÊ Æ÷ÀÎÅÍ°¡ °¡¸®Å°´Â °ªÀÌ pivot°ªº¸´Ù Å©°Å³ª °°À» µ¿¾È¸¸
-			right--; // ¿À¸¥ÂÊ Æ÷ÀÎÅÍ¸¦ <- ·Î 1Ä­¾¿ ÀÌµ¿
+		while (right > start && pArr[right] >= pArr[pivot]) { // ì˜¤ë¥¸ìª½ í¬ì¸í„° ì‹œìž‘ì§€ì (end) ë¶€í„° start + 1ê¹Œì§€, ì˜¤ë¥¸ìª½ í¬ì¸í„°ê°€ ê°€ë¦¬í‚¤ëŠ” ê°’ì´ pivotê°’ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ì„ ë™ì•ˆë§Œ
+			right--; // ì˜¤ë¥¸ìª½ í¬ì¸í„°ë¥¼ <- ë¡œ 1ì¹¸ì”© ì´ë™
 		}
 	}// while
 
-	if (left >= right) { // ¿ÞÂÊ Æ÷ÀÎÅÍ¿Í ¿À¸¥ÂÊ Æ÷ÀÎÅÍ°¡ ¾ù°¥·È´Ù¸é(ex) (left: 3 right: 3) or (left: 4 right: 2))
-		swap(&pArr[pivot], &pArr[right]); // right°¡ °¡¸®Å°´Â °ª°ú pivot°ªÀ» ±³Ã¼(ÀÚ¸®±³È¯) 
-	} else { // ¿ÞÂÊ Æ÷ÀÎÅÍ¿Í ¿À¸¥ÂÊ Æ÷ÀÎÅÍ°¡ ¾ù°¥¸®±â Àü¿¡ ¸ØÃè´Ù¸é
-		swap(&pArr[right], &pArr[left]); // left°¡ °¡¸®Å°´Â °ª°ú right°¡ °¡¸®Å°´Â °ªÀ» ±³Ã¼(ÀÚ¸®±³È¯)
+	if (left >= right) { // ì™¼ìª½ í¬ì¸í„°ì™€ ì˜¤ë¥¸ìª½ í¬ì¸í„°ê°€ ì—‡ê°ˆë ¸ë‹¤ë©´(ex) (left: 3 right: 3) or (left: 4 right: 2))
+		swap(&pArr[pivot], &pArr[right]); // rightê°€ ê°€ë¦¬í‚¤ëŠ” ê°’ê³¼ pivotê°’ì„ êµì²´(ìžë¦¬êµí™˜) 
+	} else { // ì™¼ìª½ í¬ì¸í„°ì™€ ì˜¤ë¥¸ìª½ í¬ì¸í„°ê°€ ì—‡ê°ˆë¦¬ê¸° ì „ì— ë©ˆì·„ë‹¤ë©´
+		swap(&pArr[right], &pArr[left]); // leftê°€ ê°€ë¦¬í‚¤ëŠ” ê°’ê³¼ rightê°€ ê°€ë¦¬í‚¤ëŠ” ê°’ì„ êµì²´(ìžë¦¬êµí™˜)
 	}
 
-	quick(pArr, start, right - 1); // pivotÀ§Ä¡ ±âÁØÀ¸·Î ºÐÇÒ - ¿ÞÂÊ ¹è¿­À» ÀÎÀÚ·Î quickÀç±ÍÈ£Ãâ
-	quick(pArr, right + 1, end); // pivotÀ§Ä¡ ±âÁØÀ¸·Î ºÐÇÒ - ¿À¸¥ÂÊ ¹è¿­À» ÀÎÀÚ·Î quickÀç±ÍÈ£Ãâ
+	quick(pArr, start, right - 1); // pivotìœ„ì¹˜ ê¸°ì¤€ìœ¼ë¡œ ë¶„í•  - ì™¼ìª½ ë°°ì—´ì„ ì¸ìžë¡œ quickìž¬ê·€í˜¸ì¶œ
+	quick(pArr, right + 1, end); // pivotìœ„ì¹˜ ê¸°ì¤€ìœ¼ë¡œ ë¶„í•  - ì˜¤ë¥¸ìª½ ë°°ì—´ì„ ì¸ìžë¡œ quickìž¬ê·€í˜¸ì¶œ
 
-	//for (int i = 0; i < arrSize - 1; i++) { // ¹è¿­ Å©±â -1 ¸¸Å­ ¹Ýº¹
-	//	pivot = pArr[0]; // pivot°ªÀº pArr[start]; Áï ¸ðµç ¹è¿­ÀÇ 0¹øÂ° ¿ä¼Ò
-	//	printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ÇöÀç PIVOT Value:: %d  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n", pivot);
+	//for (int i = 0; i < arrSize - 1; i++) { // ë°°ì—´ í¬ê¸° -1 ë§Œí¼ ë°˜ë³µ
+	//	pivot = pArr[0]; // pivotê°’ì€ pArr[start]; ì¦‰ ëª¨ë“  ë°°ì—´ì˜ 0ë²ˆì§¸ ìš”ì†Œ
+	//	printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ í˜„ìž¬ PIVOT Value:: %d  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n", pivot);
 	//	printf("<<<<<<<<<<<<<<<<<<<<<< left: %d, right: %d >>>>>>>>>>>>>>>>>>>>>>>>>\n", left, right);
-	//	if (left >= right && pivot > right) { // left ¿Í right°¡ ±³Â÷ ÇßÀ½
-	//		printf("\n*************** Pivot°ú Right°¡ À§Ä¡¸¦ ¼­·Î ¹Ù²ß´Ï´Ù !!***************\n");
+	//	if (left >= right && pivot > right) { // left ì™€ rightê°€ êµì°¨ í–ˆìŒ
+	//		printf("\n*************** Pivotê³¼ Rightê°€ ìœ„ì¹˜ë¥¼ ì„œë¡œ ë°”ê¿‰ë‹ˆë‹¤ !!***************\n");
 	//		swap(&pArr[0], &pArr[right]);
 	//		for (int q = 0; q < arrSize; q++) {
 	//			printf("(((%d)))  ", pArr[q]);
 	//		}//
 	//		Sleep(2000);
-	//		printf("\n\n\n\n\n\n\n=========================== ¡å ¿ÞÂÊ Àç±Í È£Ãâ START ===========================\n");
-	//		quick(pArr, 0, right - 1);	// Àç±Í ÇÔ¼ö È£Ãâ(pivot±âÁØÀ¸·Î ¿ÞÂÊ ¹è¿­)
-	//		printf("\n\n\n\n\n\n\n=========================== ¡å ¿À¸¥ÂÊ Àç±Í È£Ãâ START ===========================\n");
-	//		quick(pArr, right + 1, end);		// Àç±Í ÇÔ¼ö È£Ãâ(pivot±âÁØÀ¸·Î ¿À¸¥ÂÊ ¹è¿­)
+	//		printf("\n\n\n\n\n\n\n=========================== â–¼ ì™¼ìª½ ìž¬ê·€ í˜¸ì¶œ START ===========================\n");
+	//		quick(pArr, 0, right - 1);	// ìž¬ê·€ í•¨ìˆ˜ í˜¸ì¶œ(pivotê¸°ì¤€ìœ¼ë¡œ ì™¼ìª½ ë°°ì—´)
+	//		printf("\n\n\n\n\n\n\n=========================== â–¼ ì˜¤ë¥¸ìª½ ìž¬ê·€ í˜¸ì¶œ START ===========================\n");
+	//		quick(pArr, right + 1, end);		// ìž¬ê·€ í•¨ìˆ˜ í˜¸ì¶œ(pivotê¸°ì¤€ìœ¼ë¡œ ì˜¤ë¥¸ìª½ ë°°ì—´)
 	//		// call quick() here?
 	//	}// if
 	//	if (arr[left] > pivot && leftFlag != 1) {
 	//		biggerThanPivotIndex = left;
-	//		leftFlag = 1; // left°¡ -> ÂÊÀ¸·Î Å½»öÇÏ´Ù°¡ pivotº¸´Ù Å« °ªÀ» ¹ß°ßÇßÀ½!
+	//		leftFlag = 1; // leftê°€ -> ìª½ìœ¼ë¡œ íƒìƒ‰í•˜ë‹¤ê°€ pivotë³´ë‹¤ í° ê°’ì„ ë°œê²¬í–ˆìŒ!
 	//		printf("@left: I found it!  biggerThanPivotIndex is $[%d]$!!  ", biggerThanPivotIndex);
 	//	}// if
 	//	if (arr[right] < pivot && rightFlag != 1) {
 	//		smallerThanPivotIndex = right;
-	//		rightFlag = 1; // right°¡ <- ÂÊÀ¸·Î Å½»öÇÏ´Ù°¡ pivotº¸´Ù ÀÛÀº °ªÀ» ¹ß°ßÇßÀ½!
+	//		rightFlag = 1; // rightê°€ <- ìª½ìœ¼ë¡œ íƒìƒ‰í•˜ë‹¤ê°€ pivotë³´ë‹¤ ìž‘ì€ ê°’ì„ ë°œê²¬í–ˆìŒ!
 	//		printf("@right: I found it!  smallerThanPivotIndex is $[%d]$!!  ", smallerThanPivotIndex);
 	//	}// if
 	//	if (left == right) {
-	//		isCrossed = 1; // left ¿Í right°¡ Å½»öÇÏ´Ù°¡ °°Àº index À§Ä¡¿¡¼­ ¸¸³µÀ½!
+	//		isCrossed = 1; // left ì™€ rightê°€ íƒìƒ‰í•˜ë‹¤ê°€ ê°™ì€ index ìœ„ì¹˜ì—ì„œ ë§Œë‚¬ìŒ!
 	//	}
-	//	// left ¿Í right°¡ ¸¸³ªÁö ¾Ê¾ÒÀ»¶§ ...left-> ¶ûµ¥ºäÆ÷ÀÎÆ®  <- right...
-	//	if (isCrossed != 1 && leftFlag == 1 && rightFlag == 1) { // pivotº¸´Ù Å« °ª°ú ÀÛÀº °ª µÑ ¸ðµÎ¸¦ Ã£¾ÒÀ»¶§
+	//	// left ì™€ rightê°€ ë§Œë‚˜ì§€ ì•Šì•˜ì„ë•Œ ...left-> ëž‘ë°ë·°í¬ì¸íŠ¸  <- right...
+	//	if (isCrossed != 1 && leftFlag == 1 && rightFlag == 1) { // pivotë³´ë‹¤ í° ê°’ê³¼ ìž‘ì€ ê°’ ë‘˜ ëª¨ë‘ë¥¼ ì°¾ì•˜ì„ë•Œ
 	//		printf("\nsmallerThanPivotIndex is $$&& %d &&$$!!  biggerThanPivotIndex is $$&& %d &&$$!!   ", smallerThanPivotIndex, biggerThanPivotIndex);
-	//		printf("\n|||||||||||||||||*************** pivotº¸´Ù Å« °ª°ú ÀÛÀº °ªÀÌ ¼­·Î À§Ä¡¸¦ ¹Ù²ß´Ï´Ù !!***************|||||||||||||||||\n");
-	//		swap(&pArr[smallerThanPivotIndex], &pArr[biggerThanPivotIndex]); // µÎ ¿ä¼Ò¸¦ swap(ÀÚ¸®±³Ã¼)
-	//		leftFlag = 0;	// flag ÃÊ±âÈ­
-	//		rightFlag = 0;	// flag ÃÊ±âÈ­
-	//		left++;  // left Ä¿¼­¸¦ ¿À¸¥ÂÊÀ¸·Î ÇÑ Ä­ ÀÌµ¿
-	//		right--; // right Ä¿¼­¸¦ ¿ÞÂÊÀ¸·Î ÇÑ Ä­ ÀÌµ¿
+	//		printf("\n|||||||||||||||||*************** pivotë³´ë‹¤ í° ê°’ê³¼ ìž‘ì€ ê°’ì´ ì„œë¡œ ìœ„ì¹˜ë¥¼ ë°”ê¿‰ë‹ˆë‹¤ !!***************|||||||||||||||||\n");
+	//		swap(&pArr[smallerThanPivotIndex], &pArr[biggerThanPivotIndex]); // ë‘ ìš”ì†Œë¥¼ swap(ìžë¦¬êµì²´)
+	//		leftFlag = 0;	// flag ì´ˆê¸°í™”
+	//		rightFlag = 0;	// flag ì´ˆê¸°í™”
+	//		left++;  // left ì»¤ì„œë¥¼ ì˜¤ë¥¸ìª½ìœ¼ë¡œ í•œ ì¹¸ ì´ë™
+	//		right--; // right ì»¤ì„œë¥¼ ì™¼ìª½ìœ¼ë¡œ í•œ ì¹¸ ì´ë™
 	//		continue;
 	//	}// if
 	//	
-	//	if (leftFlag != 1) left++;		// left°¡ pivotº¸´Ù Å« °ªÀ» ¹ß°ßÇÏÁö ¸øÇßÀ¸¸é leftÀÇ Ä¿¼­¸¦ ¿À¸¥ÂÊÀ¸·Î ÇÑ Ä­ ÀÌµ¿
-	//	if (rightFlag != 1) right--;	// right°¡ pivotº¸´Ù ÀÛÀº °ªÀ» ¹ß°ßÇÏÁö ¸øÇßÀ¸¸é rightÀÇ Ä¿¼­¸¦ ¿ÞÂÊÀ¸·Î ÇÑ Ä­ ÀÌµ¿
-	//	//printf("left: <%d>, right: <%d>\n", left, right); // left¿Í right ÇöÀç Ä¿¼­ À§Ä¡ Ãâ·Â
-	//	printf("\n¡ß¡ß¡ß¡ß¡ß for¹® ³¡¿¡¼­ Âï¾îº¸´Â pArr ½ºÅ×ÀÌÅÍ½º: ");
+	//	if (leftFlag != 1) left++;		// leftê°€ pivotë³´ë‹¤ í° ê°’ì„ ë°œê²¬í•˜ì§€ ëª»í–ˆìœ¼ë©´ leftì˜ ì»¤ì„œë¥¼ ì˜¤ë¥¸ìª½ìœ¼ë¡œ í•œ ì¹¸ ì´ë™
+	//	if (rightFlag != 1) right--;	// rightê°€ pivotë³´ë‹¤ ìž‘ì€ ê°’ì„ ë°œê²¬í•˜ì§€ ëª»í–ˆìœ¼ë©´ rightì˜ ì»¤ì„œë¥¼ ì™¼ìª½ìœ¼ë¡œ í•œ ì¹¸ ì´ë™
+	//	//printf("left: <%d>, right: <%d>\n", left, right); // leftì™€ right í˜„ìž¬ ì»¤ì„œ ìœ„ì¹˜ ì¶œë ¥
+	//	printf("\nâ—†â—†â—†â—†â—† forë¬¸ ëì—ì„œ ì°ì–´ë³´ëŠ” pArr ìŠ¤í…Œì´í„°ìŠ¤: ");
 	//	for (int k = 0; k < arrSize; k++) {
 	//		printf("(%d) ", pArr[k]);
 	//		if (k == arrSize - 1) printf("\n\n");
 	//	}// for
 	//}// for
 
-	//printf("\n¡á¡á¡á¡á¡á¡á¡á¡á¡á ÇÔ¼ö ³¡¿¡¼­ Âï¾îº¸´Â pArr ½ºÅ×ÀÌÅÍ½º: ");
+	//printf("\nâ– â– â– â– â– â– â– â– â–  í•¨ìˆ˜ ëì—ì„œ ì°ì–´ë³´ëŠ” pArr ìŠ¤í…Œì´í„°ìŠ¤: ");
 	//for (int i = 0; i < arrSize; i++) {
 	//	printf("|<<[ %d ]>>|  ", pArr[i]);
 	//}
