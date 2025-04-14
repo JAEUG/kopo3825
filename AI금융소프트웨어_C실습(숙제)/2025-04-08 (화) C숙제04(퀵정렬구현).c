@@ -1,110 +1,132 @@
 #include <stdio.h>
-#include <windows.h>
-// quick sort: divide and conquer
-void swap(int* first, int* second) { // firstì™€ secondì˜ ê°’ì„ êµí™˜
-	int temp;
-	temp = *second;
-	*second = *first;
-	*first = temp;
-}// swap
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#define TRUE 1
+#define FALSE 0
+#define MAX_STUDENT 1000
+#define NAME_SIZE 100
+#define GENDER_SIZE 10
+#define HOBBY_SIZE 100
+typedef struct student {
+    char name[NAME_SIZE];
+    int age;
+    char gender[GENDER_SIZE];
+    char hobby[HOBBY_SIZE];
+} Student;
 
-void quick(int arr[], int start, int end) {
-	if (start >= end) return;// ë°°ì—´ì˜ í¬ê¸°ê°€(ë¶„í• ë˜ì–´ ì¬ê·€í˜¸ì¶œ ë˜ì—ˆì„ë•Œë¥¼ ìƒê°) 0ì´ ë˜ì—ˆì„ë•ŒëŠ” í•¨ìˆ˜ë¥¼ ì¢…ë£Œ
-	int *pArr = &arr[0];	 // ë°°ì—´ arrë¥¼ ì¡°ì‘í•˜ê¸° ìœ„í•œ í¬ì¸í„°
-	int left = start + 1;	 // ì™¼ìª½ í¬ì¸í„°
-	int right = end;	 // ì˜¤ë¥¸ìª½ í¬ì¸í„°		
-	int pivot = start;	 // pivotìœ„ì¹˜
-	
-	while (left <= right) { // ì™¼ìª½ í¬ì¸í„°(ì§„í–‰ë°©í–¥:--->)ê°€ ì˜¤ë¥¸ìª½ í¬ì¸í„°(ì§„í–‰ë°©í–¥:<---)ì™€ ë§Œë‚ ë•Œê¹Œì§€ë§Œ ì‹¤í–‰
-		while (left <= end && pArr[left] <= pArr[pivot]) { // ì™¼ìª½ í¬ì¸í„° ì‹œì‘ì§€ì (start + 1)ë¶€í„° ë°°ì—´ì˜ ëê¹Œì§€, ì™¼ìª½í¬ì¸í„°ê°€ ê°€ë¦¬í‚¤ëŠ” ê°’ì´ pivotê°’ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ì„ ë™ì•ˆë§Œ
-			left++; // ì™¼ìª½ í¬ì¸í„°ë¥¼ -> ë¡œ 1ì¹¸ì”© ì´ë™
-		}
-		while (right > start && pArr[right] >= pArr[pivot]) { // ì˜¤ë¥¸ìª½ í¬ì¸í„° ì‹œì‘ì§€ì (end) ë¶€í„° start + 1ê¹Œì§€, ì˜¤ë¥¸ìª½ í¬ì¸í„°ê°€ ê°€ë¦¬í‚¤ëŠ” ê°’ì´ pivotê°’ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ì„ ë™ì•ˆë§Œ
-			right--; // ì˜¤ë¥¸ìª½ í¬ì¸í„°ë¥¼ <- ë¡œ 1ì¹¸ì”© ì´ë™
-		}
-	}// while
+void makeInitData(Student* std) { // default ÇĞ»ı 3¸íºĞ µ¥ÀÌÅÍ »ı¼º
+    strcpy(std[0].name, "hong");
+    std[0].age = 30;
+    strcpy(std[0].gender, "M");
+    strcpy(std[0].hobby, "soccer");
 
-	if (left >= right) { // ì™¼ìª½ í¬ì¸í„°ì™€ ì˜¤ë¥¸ìª½ í¬ì¸í„°ê°€ ì—‡ê°ˆë ¸ë‹¤ë©´(ex) (left: 3 right: 3) or (left: 4 right: 2))
-		swap(&pArr[pivot], &pArr[right]); // rightê°€ ê°€ë¦¬í‚¤ëŠ” ê°’ê³¼ pivotê°’ì„ êµì²´(ìë¦¬êµí™˜) 
-	} else { // ì™¼ìª½ í¬ì¸í„°ì™€ ì˜¤ë¥¸ìª½ í¬ì¸í„°ê°€ ì—‡ê°ˆë¦¬ê¸° ì „ì— ë©ˆì·„ë‹¤ë©´
-		swap(&pArr[right], &pArr[left]); // leftê°€ ê°€ë¦¬í‚¤ëŠ” ê°’ê³¼ rightê°€ ê°€ë¦¬í‚¤ëŠ” ê°’ì„ êµì²´(ìë¦¬êµí™˜)
-	}
+    strcpy(std[1].name, "kim");
+    std[1].age = 25;
+    strcpy(std[1].gender, "M");
+    strcpy(std[1].hobby, "music");
 
-	quick(pArr, start, right - 1); // pivotìœ„ì¹˜ ê¸°ì¤€ìœ¼ë¡œ ë¶„í•  - ì™¼ìª½ ë°°ì—´ì„ ì¸ìë¡œ quickì¬ê·€í˜¸ì¶œ
-	quick(pArr, right + 1, end); // pivotìœ„ì¹˜ ê¸°ì¤€ìœ¼ë¡œ ë¶„í•  - ì˜¤ë¥¸ìª½ ë°°ì—´ì„ ì¸ìë¡œ quickì¬ê·€í˜¸ì¶œ
+    strcpy(std[2].name, "park");
+    std[2].age = 20;
+    strcpy(std[2].gender, "F");
+    strcpy(std[2].hobby, "movie");
+}// makeInitData
 
-	//for (int i = 0; i < arrSize - 1; i++) { // ë°°ì—´ í¬ê¸° -1 ë§Œí¼ ë°˜ë³µ
-	//	pivot = pArr[0]; // pivotê°’ì€ pArr[start]; ì¦‰ ëª¨ë“  ë°°ì—´ì˜ 0ë²ˆì§¸ ìš”ì†Œ
-	//	printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ í˜„ì¬ PIVOT Value:: %d  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n", pivot);
-	//	printf("<<<<<<<<<<<<<<<<<<<<<< left: %d, right: %d >>>>>>>>>>>>>>>>>>>>>>>>>\n", left, right);
-	//	if (left >= right && pivot > right) { // left ì™€ rightê°€ êµì°¨ í–ˆìŒ
-	//		printf("\n*************** Pivotê³¼ Rightê°€ ìœ„ì¹˜ë¥¼ ì„œë¡œ ë°”ê¿‰ë‹ˆë‹¤ !!***************\n");
-	//		swap(&pArr[0], &pArr[right]);
-	//		for (int q = 0; q < arrSize; q++) {
-	//			printf("(((%d)))  ", pArr[q]);
-	//		}//
-	//		Sleep(2000);
-	//		printf("\n\n\n\n\n\n\n=========================== â–¼ ì™¼ìª½ ì¬ê·€ í˜¸ì¶œ START ===========================\n");
-	//		quick(pArr, 0, right - 1);	// ì¬ê·€ í•¨ìˆ˜ í˜¸ì¶œ(pivotê¸°ì¤€ìœ¼ë¡œ ì™¼ìª½ ë°°ì—´)
-	//		printf("\n\n\n\n\n\n\n=========================== â–¼ ì˜¤ë¥¸ìª½ ì¬ê·€ í˜¸ì¶œ START ===========================\n");
-	//		quick(pArr, right + 1, end);		// ì¬ê·€ í•¨ìˆ˜ í˜¸ì¶œ(pivotê¸°ì¤€ìœ¼ë¡œ ì˜¤ë¥¸ìª½ ë°°ì—´)
-	//		// call quick() here?
-	//	}// if
-	//	if (arr[left] > pivot && leftFlag != 1) {
-	//		biggerThanPivotIndex = left;
-	//		leftFlag = 1; // leftê°€ -> ìª½ìœ¼ë¡œ íƒìƒ‰í•˜ë‹¤ê°€ pivotë³´ë‹¤ í° ê°’ì„ ë°œê²¬í–ˆìŒ!
-	//		printf("@left: I found it!  biggerThanPivotIndex is $[%d]$!!  ", biggerThanPivotIndex);
-	//	}// if
-	//	if (arr[right] < pivot && rightFlag != 1) {
-	//		smallerThanPivotIndex = right;
-	//		rightFlag = 1; // rightê°€ <- ìª½ìœ¼ë¡œ íƒìƒ‰í•˜ë‹¤ê°€ pivotë³´ë‹¤ ì‘ì€ ê°’ì„ ë°œê²¬í–ˆìŒ!
-	//		printf("@right: I found it!  smallerThanPivotIndex is $[%d]$!!  ", smallerThanPivotIndex);
-	//	}// if
-	//	if (left == right) {
-	//		isCrossed = 1; // left ì™€ rightê°€ íƒìƒ‰í•˜ë‹¤ê°€ ê°™ì€ index ìœ„ì¹˜ì—ì„œ ë§Œë‚¬ìŒ!
-	//	}
-	//	// left ì™€ rightê°€ ë§Œë‚˜ì§€ ì•Šì•˜ì„ë•Œ ...left-> ë‘ë°ë·°í¬ì¸íŠ¸  <- right...
-	//	if (isCrossed != 1 && leftFlag == 1 && rightFlag == 1) { // pivotë³´ë‹¤ í° ê°’ê³¼ ì‘ì€ ê°’ ë‘˜ ëª¨ë‘ë¥¼ ì°¾ì•˜ì„ë•Œ
-	//		printf("\nsmallerThanPivotIndex is $$&& %d &&$$!!  biggerThanPivotIndex is $$&& %d &&$$!!   ", smallerThanPivotIndex, biggerThanPivotIndex);
-	//		printf("\n|||||||||||||||||*************** pivotë³´ë‹¤ í° ê°’ê³¼ ì‘ì€ ê°’ì´ ì„œë¡œ ìœ„ì¹˜ë¥¼ ë°”ê¿‰ë‹ˆë‹¤ !!***************|||||||||||||||||\n");
-	//		swap(&pArr[smallerThanPivotIndex], &pArr[biggerThanPivotIndex]); // ë‘ ìš”ì†Œë¥¼ swap(ìë¦¬êµì²´)
-	//		leftFlag = 0;	// flag ì´ˆê¸°í™”
-	//		rightFlag = 0;	// flag ì´ˆê¸°í™”
-	//		left++;  // left ì»¤ì„œë¥¼ ì˜¤ë¥¸ìª½ìœ¼ë¡œ í•œ ì¹¸ ì´ë™
-	//		right--; // right ì»¤ì„œë¥¼ ì™¼ìª½ìœ¼ë¡œ í•œ ì¹¸ ì´ë™
-	//		continue;
-	//	}// if
-	//	
-	//	if (leftFlag != 1) left++;		// leftê°€ pivotë³´ë‹¤ í° ê°’ì„ ë°œê²¬í•˜ì§€ ëª»í–ˆìœ¼ë©´ leftì˜ ì»¤ì„œë¥¼ ì˜¤ë¥¸ìª½ìœ¼ë¡œ í•œ ì¹¸ ì´ë™
-	//	if (rightFlag != 1) right--;	// rightê°€ pivotë³´ë‹¤ ì‘ì€ ê°’ì„ ë°œê²¬í•˜ì§€ ëª»í–ˆìœ¼ë©´ rightì˜ ì»¤ì„œë¥¼ ì™¼ìª½ìœ¼ë¡œ í•œ ì¹¸ ì´ë™
-	//	//printf("left: <%d>, right: <%d>\n", left, right); // leftì™€ right í˜„ì¬ ì»¤ì„œ ìœ„ì¹˜ ì¶œë ¥
-	//	printf("\nâ—†â—†â—†â—†â—† forë¬¸ ëì—ì„œ ì°ì–´ë³´ëŠ” pArr ìŠ¤í…Œì´í„°ìŠ¤: ");
-	//	for (int k = 0; k < arrSize; k++) {
-	//		printf("(%d) ", pArr[k]);
-	//		if (k == arrSize - 1) printf("\n\n");
-	//	}// for
-	//}// for
+void printInitData(Student* std) { // default ÇĞ»ı 3¸íºĞ µ¥ÀÌÅÍ Ãâ·Â
+    printf("\n======================ÀúÀåµÈ ÇĞ»ı µ¥ÀÌÅÍÀÔ´Ï´Ù=======================\n");
+    for (int i = 0; i < 3; i++) {
+        printf("%d. %s / %d / %s / %s\n", i + 1, std[i].name, std[i].age, std[i].gender, std[i].hobby);
+    }
+    printf("\n=====================================================================\n");
+}// printInitData
 
-	//printf("\nâ– â– â– â– â– â– â– â– â–  í•¨ìˆ˜ ëì—ì„œ ì°ì–´ë³´ëŠ” pArr ìŠ¤í…Œì´í„°ìŠ¤: ");
-	//for (int i = 0; i < arrSize; i++) {
-	//	printf("|<<[ %d ]>>|  ", pArr[i]);
-	//}
+void inputSudentInfo(Student* std, int* pI, int* pIsSuccess) { // ÇĞ»ı Á¤º¸¸¦ ÀÔ·Â ¹Ş¾Æ ÀúÀåÇÏ´Â ÇÔ¼ö
+    int isNameNumber = FALSE; // ÀÌ¸§ ÀÔ·Â¿¡ Á¤¼ö°¡ Æ÷ÇÔµÇ¾ú´ÂÁö ÆÇ´Ü
+    int x = 0; // nameTmp ¹è¿­ index·Î »ç¿ë
+    printf("\nÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä: ");
+    char nameTmp[100];
+    scanf("%s", nameTmp);
+    while (nameTmp[x] != '\0') { // Ä³¸¯ÅÍ¹è¿­ ¹®ÀÚ¿­À» °Ë»çÇÏ°í ½ÍÀ»¶§: while(Ä³¸¯ÅÍ¹è¿­[i] != '\0') i´Â ++; why? Ä³¸¯ÅÍ ¹è¿­¿¡´Â ¸¶Áö¸· ¿ä¼Ò·Î '\0'ÀÌ µé¾î°¨ 
+        if (isdigit(nameTmp[x])) isNameNumber = TRUE; // isdigit() ÇÔ¼ö: ÀÎÀÚ°¡ ¼ıÀÚÀÌ¸é 1¹İÈ¯
+        x++;
+    }
 
-}// quick
+    if (isNameNumber == TRUE) {
+        printf("@SYSTEM: ÀÌ¸§¿¡ ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ½Ç ¼ö ¾ø½À´Ï´Ù.\n");
+        return;
+    }
+    else {
+        strcpy(std[*pI].name, nameTmp);
+    }// if		
+
+    printf("³ªÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+    int ageTmp;
+    int dummy = scanf("%d", &ageTmp);
+    while (dummy != 1) {
+        printf("@SYSTEM: ³ªÀÌ ÀÔ·Â¿¡ ½ÇÆĞÇß½À´Ï´Ù.\n");
+        while (getchar() != '\n'); // ¹öÆÛ¿¡ ´ã±ä ¹®ÀÚ¿­ µ¥ÀÌÅÍ¸¦ ¾Õ¿¡¼­ºÎÅÍ °³Çà¹®ÀÚ('\n')¸¦ ¸¸³¯¶§±îÁö »Ì¾Æ³½´Ù(¹öÆÛ ºñ¿öÁÖ±â)
+        printf("³ªÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+        dummy = scanf("%d", &ageTmp);
+    }// while
+
+    if (ageTmp <= 0 || ageTmp > 120) {
+        printf("@SYSTEM: ¿Ã¹Ù¸£Áö ¾ÊÀº ³ªÀÌ ÀÔ·ÂÀÔ´Ï´Ù.\n");
+        return;
+    }
+    else {
+        std[*pI].age = ageTmp;
+    }// if
+
+    printf("¼ºº°À» ÀÔ·ÂÇÏ¼¼¿ä(³²ÀÚ¸é: M, ¿©ÀÚ¸é: F): ");
+    char genderTmp[10];
+    scanf("%s", genderTmp);
+    if (strcmp(genderTmp, "M") == 0 || strcmp(genderTmp, "F") == 0) { // strcmp(ÀÎÀÚ1, ÀÎÀÚ2): ÀÎÀÚ1°ú ÀÎÀÚ2ÀÇ °ªÀÌ °°À»¶§¸¸ 0À» ¹İÈ¯
+        strcpy(std[*pI].gender, genderTmp);
+    }
+    else {
+        printf("¼ºº°Àº M È¤Àº F¸¸ ÀÔ·ÂÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.\n");
+        return;
+    }// if
+
+    x = 0;
+    int isHobbyNumber = FALSE;
+    printf("Ãë¹Ì¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+    char hobbyTmp[100];
+    scanf("%s", hobbyTmp);
+    while (hobbyTmp[x] != '\0') {
+        if (isdigit(hobbyTmp[x])) isHobbyNumber = TRUE;
+        x++;
+    }// while
+
+    if (isHobbyNumber == TRUE) {
+        printf("@SYSTEM: Ãë¹Ì¿¡ ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ½Ç ¼ö ¾ø½À´Ï´Ù.\n");
+        return;
+    }
+    else {
+        strcpy(std[*pI].hobby, hobbyTmp);
+    }// if
+
+    *pIsSuccess = TRUE; // µ¥ÀÌÅÍ ÀúÀå ¼º°ø
+    *pI += 1; // i °ª +1
+}// inputSudentInfo
+
+void printAccumulatedStudentInfo(Student* std, int start, int end) {
+    printf("\n======================ÀúÀåµÈ ÇĞ»ı µ¥ÀÌÅÍÀÔ´Ï´Ù=======================\n");
+    for (int i = start; i < end; i++) {
+        printf("%d. %s / %d / %s / %s\n", i + 1, std[i].name, std[i].age, std[i].gender, std[i].hobby);
+    }
+    printf("\n=====================================================================\n");
+}// printAccumulatedStudentInfo
 
 void main() {
-	int arr[] = {5, 4, 3, 2, 1};
-	int arrSize = sizeof(arr) / sizeof(int);
+    int i = 3;
+    Student students[MAX_STUDENT];
+    makeInitData(students);
+    printInitData(students);
 
-	for (int i = 0; i < arrSize; i++) {
-		printf(".%d. ", arr[i]);
-	}//
-
-	quick(arr, 0, arrSize - 1);
-	printf("\n\n");
-	
-	for (int i = 0; i < arrSize; i++) {
-		printf("<<%d>>  ", arr[i]);
-	}
-
+    while (TRUE) {
+        int isSuccess = FALSE;
+        inputSudentInfo(students, &i, &isSuccess);
+        if (isSuccess == TRUE) printAccumulatedStudentInfo(students, 0, i);
+    }// while
 }// main
