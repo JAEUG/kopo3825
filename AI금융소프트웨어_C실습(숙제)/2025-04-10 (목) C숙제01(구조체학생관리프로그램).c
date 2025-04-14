@@ -120,9 +120,9 @@ void main() {
     makeInitData(students);
     printInitData(students);
 
-	while (TRUE) {
-	    int isSuccess = FALSE;
+    while (TRUE) {
+	int isSuccess = FALSE;
         inputSudentInfo(students, &i, &isSuccess);
-	    if (isSuccess == TRUE) printAccumulatedStudentInfo(students, 0, i);
-	}// while
+	if (isSuccess == TRUE) printAccumulatedStudentInfo(students, 0, i);
+    }// while
 }// main
