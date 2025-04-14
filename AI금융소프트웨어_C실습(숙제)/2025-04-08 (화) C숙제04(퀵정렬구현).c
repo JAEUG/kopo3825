@@ -12,8 +12,8 @@ void quick(int arr[], int start, int end) {
 	if (start >= end) return;// 배열의 크기가(분할되어 재귀호출 되었을때를 생각) 0이 되었을때는 함수를 종료
 	int *pArr = &arr[0];	 // 배열 arr를 조작하기 위한 포인터
 	int left = start + 1;	 // 왼쪽 포인터
-	int right = end;		 // 오른쪽 포인터		
-	int pivot = start;		 // pivot위치
+	int right = end;	 // 오른쪽 포인터		
+	int pivot = start;	 // pivot위치
 	
 	while (left <= right) { // 왼쪽 포인터(진행방향:--->)가 오른쪽 포인터(진행방향:<---)와 만날때까지만 실행
 		while (left <= end && pArr[left] <= pArr[pivot]) { // 왼쪽 포인터 시작지점(start + 1)부터 배열의 끝까지, 왼쪽포인터가 가리키는 값이 pivot값보다 작거나 같을 동안만
