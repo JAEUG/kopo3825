@@ -21,7 +21,7 @@ typedef struct student {
     char choice[20];
 } Student;
 
-void makeInitData(Student* std) { // default ÇĞ»ı 3¸íºĞ µ¥ÀÌÅÍ »ı¼º
+void makeInitData(Student* std) { // default í•™ìƒ 3ëª…ë¶„ ë°ì´í„° ìƒì„±
     strcpy(std[0].name, "hong");
     std[0].age = 30;
     strcpy(std[0].gender, "M");
@@ -41,65 +41,63 @@ void makeInitData(Student* std) { // default ÇĞ»ı 3¸íºĞ µ¥ÀÌÅÍ »ı¼º
     strcpy(std[2].choice, "hobby: ");
 }// makeInitData
 
-void printInitData(Student* std) { // default ÇĞ»ı 3¸íºĞ µ¥ÀÌÅÍ Ãâ·Â
-    printf("\n======================ÀúÀåµÈ ÇĞ»ı µ¥ÀÌÅÍÀÔ´Ï´Ù=======================\n");
+void printInitData(Student* std) { // default í•™ìƒ 3ëª…ë¶„ ë°ì´í„° ì¶œë ¥
+    printf("\n======================ì €ì¥ëœ í•™ìƒ ë°ì´í„°ì…ë‹ˆë‹¤=======================\n");
     for (int i = 0; i < 3; i++) {
         printf("%d. %s / %d / %s / %s%s\n", i + 1, std[i].name, std[i].age, std[i].gender, std[i].choice, std[i].hobby);
     }
     printf("\n=====================================================================\n");
 }// printInitData
 
-void inputSudentInfo(Student* std, int* pI, int* pIsSuccess) { // ÇĞ»ı Á¤º¸¸¦ ÀÔ·Â ¹Ş¾Æ ÀúÀåÇÏ´Â ÇÔ¼ö
-    int isNameNumber = FALSE; // ÀÌ¸§ ÀÔ·Â¿¡ Á¤¼ö°¡ Æ÷ÇÔµÇ¾ú´ÂÁö ÆÇ´Ü
-    int x = 0; // nameTmp ¹è¿­ index·Î »ç¿ë
-    printf("\nÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä: ");
+void inputSudentInfo(Student* std, int* pI, int* pIsSuccess) { // í•™ìƒ ì •ë³´ë¥¼ ì…ë ¥ ë°›ì•„ ì €ì¥í•˜ëŠ” í•¨ìˆ˜
+    int isNameNumber = FALSE; // ì´ë¦„ ì…ë ¥ì— ì •ìˆ˜ê°€ í¬í•¨ë˜ì—ˆëŠ”ì§€ íŒë‹¨
+    int x = 0; // nameTmp ë°°ì—´ indexë¡œ ì‚¬ìš©
+    printf("\nì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”: ");
     char nameTmp[100];
     scanf("%s", nameTmp);
-    while (nameTmp[x] != '\0') { // Ä³¸¯ÅÍ¹è¿­ ¹®ÀÚ¿­À» °Ë»çÇÏ°í ½ÍÀ»¶§: while(Ä³¸¯ÅÍ¹è¿­[i] != '\0') i´Â ++; why? Ä³¸¯ÅÍ ¹è¿­¿¡´Â ¸¶Áö¸· ¿ä¼Ò·Î '\0'ÀÌ µé¾î°¨ 
-        if (isdigit(nameTmp[x])) isNameNumber = TRUE; // isdigit() ÇÔ¼ö: ÀÎÀÚ°¡ ¼ıÀÚÀÌ¸é 1¹İÈ¯
+    while (nameTmp[x] != '\0') { // ìºë¦­í„°ë°°ì—´ ë¬¸ìì—´ì„ ê²€ì‚¬í•˜ê³  ì‹¶ì„ë•Œ: while(ìºë¦­í„°ë°°ì—´[i] != '\0') iëŠ” ++; why? ìºë¦­í„° ë°°ì—´ì—ëŠ” ë§ˆì§€ë§‰ ìš”ì†Œë¡œ '\0'ì´ ë“¤ì–´ê° 
+        if (isdigit(nameTmp[x])) isNameNumber = TRUE; // isdigit() í•¨ìˆ˜: ì¸ìê°€ ìˆ«ìì´ë©´ 1ë°˜í™˜
         x++;
     }
 
     if (isNameNumber == TRUE) {
-        printf("@SYSTEM: ÀÌ¸§¿¡ ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ½Ç ¼ö ¾ø½À´Ï´Ù.\n");
+        printf("@SYSTEM: ì´ë¦„ì— ìˆ«ìë¥¼ ì…ë ¥í•˜ì‹¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
         return;
-    }
-    else {
+    } else {
         strcpy(std[*pI].name, nameTmp);
     }// if		
 
-    printf("³ªÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+    printf("ë‚˜ì´ë¥¼ ì…ë ¥í•˜ì„¸ìš”: ");
     int ageTmp;
     int dummy = scanf("%d", &ageTmp);
     while (dummy != 1) {
-        printf("@SYSTEM: ³ªÀÌ ÀÔ·Â¿¡ ½ÇÆĞÇß½À´Ï´Ù.\n");
-        while (getchar() != '\n'); // ¹öÆÛ¿¡ ´ã±ä ¹®ÀÚ¿­ µ¥ÀÌÅÍ¸¦ ¾Õ¿¡¼­ºÎÅÍ °³Çà¹®ÀÚ('\n')¸¦ ¸¸³¯¶§±îÁö »Ì¾Æ³½´Ù(¹öÆÛ ºñ¿öÁÖ±â)
-        printf("³ªÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+        printf("@SYSTEM: ë‚˜ì´ ì…ë ¥ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.\n");
+        while (getchar() != '\n'); // ë²„í¼ì— ë‹´ê¸´ ë¬¸ìì—´ ë°ì´í„°ë¥¼ ì•ì—ì„œë¶€í„° ê°œí–‰ë¬¸ì('\n')ë¥¼ ë§Œë‚ ë•Œê¹Œì§€ ë½‘ì•„ë‚¸ë‹¤(ë²„í¼ ë¹„ì›Œì£¼ê¸°)
+        printf("ë‚˜ì´ë¥¼ ì…ë ¥í•˜ì„¸ìš”: ");
         dummy = scanf("%d", &ageTmp);
     }// while
 
     if (ageTmp <= 0 || ageTmp > 120) {
-        printf("@SYSTEM: ¿Ã¹Ù¸£Áö ¾ÊÀº ³ªÀÌ ÀÔ·ÂÀÔ´Ï´Ù.\n");
+        printf("@SYSTEM: ì˜¬ë°”ë¥´ì§€ ì•Šì€ ë‚˜ì´ ì…ë ¥ì…ë‹ˆë‹¤.\n");
         return;
     }
     else {
         std[*pI].age = ageTmp;
     }// if
 
-    printf("¼ºº°À» ÀÔ·ÂÇÏ¼¼¿ä(³²ÀÚ¸é: M, ¿©ÀÚ¸é: F): ");
+    printf("ì„±ë³„ì„ ì…ë ¥í•˜ì„¸ìš”(ë‚¨ìë©´: M, ì—¬ìë©´: F): ");
     char genderTmp[10];
     scanf("%s", genderTmp);
-    if (strcmp(genderTmp, "M") == 0 || strcmp(genderTmp, "F") == 0) { // strcmp(ÀÎÀÚ1, ÀÎÀÚ2): ÀÎÀÚ1°ú ÀÎÀÚ2ÀÇ °ªÀÌ °°À»¶§¸¸ 0À» ¹İÈ¯
+    if (strcmp(genderTmp, "M") == 0 || strcmp(genderTmp, "F") == 0) { // strcmp(ì¸ì1, ì¸ì2): ì¸ì1ê³¼ ì¸ì2ì˜ ê°’ì´ ê°™ì„ë•Œë§Œ 0ì„ ë°˜í™˜
         strcpy(std[*pI].gender, genderTmp);
-    }
-    else {
-        printf("¼ºº°Àº M È¤Àº F¸¸ ÀÔ·ÂÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.\n");
+    } else {
+        printf("ì„±ë³„ì€ M í˜¹ì€ Fë§Œ ì…ë ¥í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.\n");
         return;
     }// if
 
     x = 0;
     int isHobbyNumber = FALSE;
-    printf("Ãë¹Ì¸¦ ÀÔ·ÂÇÏ¼¼¿ä(ÇØ´ç ÇĞ»ı¿¡ ´ëÇÑ ±âÅ¸»çÇ×À» ±â·ÏÇÏ½Ã·Á¸é !etc¸¦ ÀÔ·ÂÇÏ¼¼¿ä): ");
+    printf("ì·¨ë¯¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”(í•´ë‹¹ í•™ìƒì— ëŒ€í•œ ê¸°íƒ€ì‚¬í•­ì„ ê¸°ë¡í•˜ì‹œë ¤ë©´ !etcë¥¼ ì…ë ¥í•˜ì„¸ìš”): ");
     char hobbyTmp[100];
     scanf("%s", hobbyTmp);
     while (hobbyTmp[x] != '\0') {
@@ -111,34 +109,32 @@ void inputSudentInfo(Student* std, int* pI, int* pIsSuccess) { // ÇĞ»ı Á¤º¸¸¦ ÀÔ
         isHobbyNumber = FALSE;
         isEtcActive = TRUE;
         char etcTmp[100];
-        printf("±âÅ¸»çÇ×À» ÀÔ·ÂÇÏ¼¼¿ä: ");
+        printf("ê¸°íƒ€ì‚¬í•­ì„ ì…ë ¥í•˜ì„¸ìš”: ");
         scanf("%s", etcTmp);
         strcpy(std[*pI].etc, etcTmp);
         strcpy(std[*pI].choice, "etc: ");
     }
 
     if (isHobbyNumber == TRUE) {
-        printf("@SYSTEM: Ãë¹Ì¿¡ ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ½Ç ¼ö ¾ø½À´Ï´Ù.\n");
+        printf("@SYSTEM: ì·¨ë¯¸ì— ìˆ«ìë¥¼ ì…ë ¥í•˜ì‹¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
         return;
-    }
-    else {
+    } else {
         if (isEtcActive == FALSE) {
             strcpy(std[*pI].choice, "hobby: ");
             strcpy(std[*pI].hobby, hobbyTmp);
         }
     }// if
 
-    *pIsSuccess = TRUE; // µ¥ÀÌÅÍ ÀúÀå ¼º°ø
-    *pI += 1; // i °ª +1
+    *pIsSuccess = TRUE; // ë°ì´í„° ì €ì¥ ì„±ê³µ
+    *pI += 1; // i ê°’ +1
 }// inputSudentInfo
 
 void printAccumulatedStudentInfo(Student* std, int start, int end) {
-    printf("\n======================ÀúÀåµÈ ÇĞ»ı µ¥ÀÌÅÍÀÔ´Ï´Ù=======================\n");
+    printf("\n======================ì €ì¥ëœ í•™ìƒ ë°ì´í„°ì…ë‹ˆë‹¤=======================\n");
     for (int i = start; i < end; i++) {
         if (strcmp(std[i].choice, "hobby: ") == 0) {
             printf("%d. %s / %d / %s / %s%s\n", i + 1, std[i].name, std[i].age, std[i].gender, std[i].choice, std[i].hobby);
-        }
-        else if (strcmp(std[i].choice, "etc: ") == 0) {
+        } else if (strcmp(std[i].choice, "etc: ") == 0) {
             printf("%d. %s / %d / %s / %s%s\n", i + 1, std[i].name, std[i].age, std[i].gender, std[i].choice, std[i].etc);
         }
     }// for
