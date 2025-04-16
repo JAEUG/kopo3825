@@ -15,19 +15,19 @@ int getTotalDays(int year, int month);
 int getDaysOfMonth(int year, int month);
 int isLeapYear(int year);
 void printDday(int input);
-void setYearMonthDayUsingInput(int input);
-int calcDday(int year, int month, int day); // ÇöÀç³¯Â¥ ~ ÀÔ·Â³¯Â¥ ±îÁöÀÇ d-day °è»ê, d-day = (20250101 ~ ÀÔ·Â³¯Â¥) - (20250101 ~ ÇöÀç³¯Â¥)
-void getCurrentDate(); // timeÀ» ÀÌ¿ë ÇöÀç ³â,¿ù,ÀÏÀ» ¾ò¾î³»¾î cYear, cMonth, cDay¿¡ ÇÒ´ç
+void setYearMonthDayUsingInput(int input); // inputì„ ì´ìš© ë…„,ì›”,ì¼ì„ ì–»ì–´ë‚´ì–´ dYear, dMonth, dDayì— í• ë‹¹
+int calcDday(int year, int month, int day); // í˜„ì¬ë‚ ì§œ ~ ì…ë ¥ë‚ ì§œ ê¹Œì§€ì˜ d-day ê³„ì‚°, d-day = (20250101 ~ ì…ë ¥ë‚ ì§œ) - (20250101 ~ í˜„ì¬ë‚ ì§œ)
+void getCurrentDate(); // timeì„ ì´ìš© í˜„ì¬ ë…„,ì›”,ì¼ì„ ì–»ì–´ë‚´ì–´ cYear, cMonth, cDayì— í• ë‹¹
 
 void main() {
 	while (TRUE) {
 		int year, month, input;
-		printf("\n¡Ü year¿Í month¸¦ ÀÔ·ÂÇÏ¼¼¿ä(year ÀÔ·Â ÈÄ space ÀÔ·Â ÈÄ month ÀÔ·Â)>> ");
+		printf("\nâ— yearì™€ monthë¥¼ ì…ë ¥í•˜ì„¸ìš”(year ì…ë ¥ í›„ space ì…ë ¥ í›„ month ì…ë ¥)>> ");
 		scanf("%d %d", &year, &month);
-		printf("¡Ü d-day °è»êÀ» À§ÇÑ ³¯Â¥¸¦ ÀÔ·ÂÇÏ¼¼¿ä(ex: 20250301)>> ");
+		printf("â— d-day ê³„ì‚°ì„ ìœ„í•œ ë‚ ì§œë¥¼ ì…ë ¥í•˜ì„¸ìš”(ex: 20250301)>> ");
 		scanf("%d", &input);
-		printCal(year, month); // ´Ş·Â Ãâ·Â
-		printDday(input); // d-day Ãâ·Â
+		printCal(year, month); // ë‹¬ë ¥ ì¶œë ¥
+		printDday(input); // d-day ì¶œë ¥
 	}
 }// main
 
@@ -37,7 +37,7 @@ void printCal(int year, int month) {
 }// printCal()
 
 void printCalHeader(int year, int month) {
-	printf("¡å %d³â %02d¿ù\n", year, month);
+	printf("â–¼ %dë…„ %02dì›”\n", year, month);
 	printf("======================\n");
 	enum days ed;
 	char cd[7] = { 's', 'm', 't', 'w', 't', 'f', 's' };
@@ -49,7 +49,7 @@ void printCalHeader(int year, int month) {
 
 void printCalBody(int year, int month) {
 	int startDay = getStartDay(year, month);
-	// printf("\n½ºÅ¸Æ®µ¥ÀÌ: %d\n", startDay);
+	// printf("\nìŠ¤íƒ€íŠ¸ë°ì´: %d\n", startDay);
 
 	for (int i = 0; i < startDay; i++) {
 		printf("   ");
@@ -68,7 +68,7 @@ void printCalBody(int year, int month) {
 }// printCalBody()
 
 int getStartDay(int year, int month) {
-	int initStartDay = 3; // 2025³â 1¿ùÀÇ ½ÃÀÛÀº ¼ö¿äÀÏ
+	int initStartDay = 3; // 2025ë…„ 1ì›”ì˜ ì‹œì‘ì€ ìˆ˜ìš”ì¼
 	int totalDays = getTotalDays(year, month);
 	int finalStartDay = (totalDays + initStartDay) % 7;
 
@@ -77,16 +77,16 @@ int getStartDay(int year, int month) {
 
 int getTotalDays(int year, int month) {
 	int total = 0;
-	// ÀÔ·Â³âµµ ÀÌÀü±îÁöÀÇ ¸ğµç ³¯ÀÇ ÇÕ(ex: ÀÔ·Â³âµµ 2027³â then, 2025³â 1¿ù 1ÀÏºÎÅÍ 2026³â 12¿ù 31ÀÏ±îÁö)
+	// ì…ë ¥ë…„ë„ ì´ì „ê¹Œì§€ì˜ ëª¨ë“  ë‚ ì˜ í•©(ex: ì…ë ¥ë…„ë„ 2027ë…„ then, 2025ë…„ 1ì›” 1ì¼ë¶€í„° 2026ë…„ 12ì›” 31ì¼ê¹Œì§€)
 	for (int i = 2025; i < year; i++) {
-		if (isLeapYear(i) == TRUE) { // À±³âÀÏ¶§´Â 1³âÀÌ 366ÀÏ
+		if (isLeapYear(i) == TRUE) { // ìœ¤ë…„ì¼ë•ŒëŠ” 1ë…„ì´ 366ì¼
 			total += 366;
 		} else {
 			total += 365;
 		}
 	}
 	
-	// ÀÔ·Â³âµµ´Â ÀÔ·Â´Ş ÀÌÀü±îÁö °è»ê(ex: ÀÔ·Â 2027³â 2¿ù then 1¿ùºĞ¸¸ °è»ê)
+	// ì…ë ¥ë…„ë„ëŠ” ì…ë ¥ë‹¬ ì´ì „ê¹Œì§€ ê³„ì‚°(ex: ì…ë ¥ 2027ë…„ 2ì›” then 1ì›”ë¶„ë§Œ ê³„ì‚°)
 	for (int i = 1; i < month; i++) {
 		total = total + getDaysOfMonth(year, i);
 	}
@@ -94,13 +94,13 @@ int getTotalDays(int year, int month) {
 	return total;
 }// getTotalDays()
 
-int getDaysOfMonth(int year, int month) { // enum month ¹İ¿µ
+int getDaysOfMonth(int year, int month) { // enum month ë°˜ì˜
 	int daysOfMonth = 0;
-	// 1, 3, 5, 7, 8, 10, 12 ¿ùÀÇ °æ¿ì 31ÀÏ±îÁö ÀÖ´Ù.
+	// 1, 3, 5, 7, 8, 10, 12 ì›”ì˜ ê²½ìš° 31ì¼ê¹Œì§€ ìˆë‹¤.
 	if (month == jan || month == mar || month == may || month == jul || month == aug || month == oct || month == dec) daysOfMonth = 31;
-	// 4, 6, 9, 11 ¿ùÀÇ °æ¿ì 30ÀÏ±îÁö ÀÖ´Ù.
+	// 4, 6, 9, 11 ì›”ì˜ ê²½ìš° 30ì¼ê¹Œì§€ ìˆë‹¤.
 	if (month == apr || month == jun || month == sep || month == nov) daysOfMonth = 30;
-	// 2¿ùÀÎ °æ¿ì À±³âÀÌ¸é 29ÀÏ, Æò³âÀÌ¸é 28ÀÏ±îÁö ÀÖ´Ù.
+	// 2ì›”ì¸ ê²½ìš° ìœ¤ë…„ì´ë©´ 29ì¼, í‰ë…„ì´ë©´ 28ì¼ê¹Œì§€ ìˆë‹¤.
 	if (month == feb) {
 		if (isLeapYear(year) == TRUE) {
 			daysOfMonth = 29;
@@ -113,7 +113,7 @@ int getDaysOfMonth(int year, int month) { // enum month ¹İ¿µ
 }// getDaysOfMonth()
 
 int isLeapYear(int year) {
-	if (year % 4 == 0) { // À±³âÀÏ¶§ 1À» return
+	if (year % 4 == 0) { // ìœ¤ë…„ì¼ë•Œ 1ì„ return
 		return 1;
 	} else {
 		return 0;
@@ -123,7 +123,7 @@ int isLeapYear(int year) {
 void printDday(int input) {
 	setYearMonthDayUsingInput(input);
 	int Dday = calcDday(dYear, dMonth, dDay);
-	printf("!D-day: [%d]ÀÏ ³²¾Ò½À´Ï´Ù.\n", Dday);
+	printf("!D-day: [%d]ì¼ ë‚¨ì•˜ìŠµë‹ˆë‹¤.\n", Dday);
 }
 
 void setYearMonthDayUsingInput(int input) {
@@ -134,15 +134,15 @@ void setYearMonthDayUsingInput(int input) {
 
 int calcDday(int year, int month, int day) {
 	getCurrentDate();
-	// getTotalDays()¿¡¼­ ÀÏ¼ö °è»êÀ» Ãß°¡
+	// getTotalDays()ì—ì„œ ì¼ìˆ˜ ê³„ì‚°ì„ ì¶”ê°€
 	int initToDday = 0;
 	int initToToday = 0;
 	int realDday = 0;
 	initToDday = getTotalDays(dYear, dMonth) + dDay;
-	// printf("\ndYear(d-dayÀÔ·ÂÀÇ ³â): %d, dMonth(d-dayÀÔ·ÂÀÇ ¿ù): %d, dDay(d-dayÀÔ·ÂÀÇ ÀÏ): %d\n", dYear, dMonth, dDay);
+	// printf("\ndYear(d-dayì…ë ¥ì˜ ë…„): %d, dMonth(d-dayì…ë ¥ì˜ ì›”): %d, dDay(d-dayì…ë ¥ì˜ ì¼): %d\n", dYear, dMonth, dDay);
 	// printf("\ngetTotalDays: %d / initToDday: %d\n", getTotalDays(dYear, dMonth), initToDday);
 	
-	// initToToday ³â ºÎºĞ °è»ê
+	// initToToday ë…„ ë¶€ë¶„ ê³„ì‚°
 	for (int i = 2025; i < cYear; i++) {
 		if (isLeapYear(i) == TRUE) {
 			initToToday += 366;
@@ -150,11 +150,11 @@ int calcDday(int year, int month, int day) {
 			initToToday += 365;
 		}
 	}
-	// initToToday ¿ù ºÎºĞ °è»ê
+	// initToToday ì›” ë¶€ë¶„ ê³„ì‚°
 	for (int i = 1; i < cMonth; i++) {
 		initToToday += getDaysOfMonth(cYear, i);
 	}
-	// initToToday ÀÏ ºÎºĞ °è»ê
+	// initToToday ì¼ ë¶€ë¶„ ê³„ì‚°
 	initToToday += cDay;
 
 	realDday = initToDday - initToToday;
@@ -167,5 +167,5 @@ void getCurrentDate() {
 	cYear = myTm.tm_year + 1900;
 	cMonth = myTm.tm_mon + 1;
 	cDay = myTm.tm_mday;
-	printf("\n¿À´Ã³¯Â¥: %d³â%02d¿ù%02dÀÏ\n", cYear, cMonth, cDay);
+	printf("\nì˜¤ëŠ˜ë‚ ì§œ: %dë…„%02dì›”%02dì¼\n", cYear, cMonth, cDay);
 }// getCurrentDate()
