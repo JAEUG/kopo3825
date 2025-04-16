@@ -22,19 +22,27 @@ void main() {
     switch (userChoice) {
         case 1:
             c = SEDAN;
-            if (c == userChoice) printf("%d번 차량은 SEDAN입니다.", c);
+            if (c == userChoice) {
+                printf("%d번 차량은 SEDAN입니다.", c);
+            }
             break;
         case 2:
             c = SUV;
-            if (c == userChoice) printf("%d번 차량은 SUV입니다.", c);
+            if (c == userChoice) {
+                printf("%d번 차량은 SUV입니다.", c);
+            }
             break;
         case 3:
             c = TRUCK;
-            if (c == userChoice) printf("%d번 차량은 TRUCK입니다.", c);
+            if (c == userChoice) {
+                printf("%d번 차량은 TRUCK입니다.", c);
+            }
             break;
         case 4:
             c = VAN;
-            if (c == userChoice) printf("%d번 차량은 VAN입니다.", c);
+            if (c == userChoice) {
+                printf("%d번 차량은 VAN입니다.", c);
+            }
             break;            
         default:
             printf("지원되지 않는 번호입니다.");
