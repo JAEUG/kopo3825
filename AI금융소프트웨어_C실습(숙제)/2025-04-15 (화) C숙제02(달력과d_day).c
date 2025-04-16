@@ -40,7 +40,7 @@ void printCalHeader(int year, int month) {
 	printf("▼ %d년 %02d월\n", year, month);
 	printf("======================\n");
 	enum day ed;
-	char cd[7] = { 's', 'm', 't', 'w', 't', 'f', 's' };
+	char cd[7] = {'s', 'm', 't', 'w', 't', 'f', 's'};
 	for (ed = sun; ed <= sat; ed++) {
 		printf("%3c", cd[ed]);
 	}
